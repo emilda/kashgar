@@ -1,0 +1,21 @@
+<launch4jConfig>
+  <headerType>gui</headerType>
+  <jar>../kashgar.jar</jar>
+  <outfile>../kashgar.exe</outfile>
+  <errTitle>kashgar</errTitle>
+  <chdir>.</chdir>
+  <customProcName>true</customProcName>
+  <stayAlive>false</stayAlive>
+  <icon>kashgar.ico</icon>
+  <jre>
+    <minVersion>1.4.0</minVersion>
+    <initialHeapSize>512</initialHeapSize>
+    <maxHeapSize>768</maxHeapSize>
+  </jre>
+  <splash>
+    <file>kashgar.bmp</file>
+    <waitForWindow>true</waitForWindow>
+    <timeout>60</timeout>
+    <timeoutErr>true</timeoutErr>
+  </splash>
+</launch4jConfig>

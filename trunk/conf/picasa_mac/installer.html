@@ -1,0 +1,23 @@
+<html>
+<head>
+
+</head>
+<body>
+
+<!-- Write what you want based on install check -->
+<script type="text/javascript">
+
+  // find an absolute url for the pbz (from the page URL)
+  // It's usually better to use an absolute URL instead of this.
+
+  var locparts = new Array();
+  locparts = document.location.href.split('/');
+  locparts.pop();
+  var pbzloc = locparts.join('/') + "/kashgar.pbz";
+
+  installmsg = "Picasa is installed<br/><a href='picasa://importbutton/?url=" + pbzloc + "'>Install metadata extractor button</a>";
+  document.write(installmsg);
+
+</script>
+</body>
+</html>

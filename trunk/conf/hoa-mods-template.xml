@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mods:mods xmlns:mods="http://www.loc.gov/mods/v3" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<mods:modsCollection>
+		<mods:titleInfo>
+			<mods:nonSort/>
+			<mods:title>___location___</mods:title>
+			<mods:subTitle/>
+		</mods:titleInfo>
+		<!-- the participant's name, according to anonymity requirements; otherwise leave blank -->
+		<mods:name type="personal">
+			<mods:namePart type="family">___dimenisons___</mods:namePart>
+			<mods:namePart type="given">___cameraMake___</mods:namePart>
+			<mods:affiliation/>
+			<mods:role>
+				<mods:roleTerm type="text">___cameraModel___</mods:roleTerm>
+			</mods:role>
+		</mods:name>
+		<!-- corporate names -->
+		<mods:name type="corporate">
+			<mods:namePart>Monash University.</mods:namePart>
+			<mods:namePart>Faculty of Arts.</mods:namePart>
+			<mods:namePart>History of Adoption Project</mods:namePart>
+		</mods:name>
+		<!-- this is a generic description for all records -->
+		<mods:abstract>This story is part of the History of Adoption, a four-year national research project funded by the Australian Research Council, 2009-2012.</mods:abstract>
+		<!-- type is a MODS value -->
+		<mods:typeOfResource>text</mods:typeOfResource>
+		<!-- term is suggested only-->
+		<mods:genre authority="local">interview/memoir</mods:genre>
+		<mods:originInfo>
+			<mods:dateIssued>2010</mods:dateIssued>
+			<mods:place>
+				<mods:placeTerm type="text"/>
+			</mods:place>
+			<mods:publisher>History of Adoption Project</mods:publisher>
+		</mods:originInfo>
+		<!-- include the adoption category in the first subject element -->
+		<mods:subject authority="local">
+			<mods:topic>Adoption category</mods:topic>
+		</mods:subject>
+		<mods:subject authority="local">
+			<mods:topic>Adoption</mods:topic>
+			<mods:topic>Oral history</mods:topic>
+		</mods:subject>
+		<mods:subject authority="local">
+			<mods:topic>Adoption</mods:topic>
+			<mods:topic>Personal recollections</mods:topic>
+		</mods:subject>
+___geographic___
+___temporal___
+		<!-- host/project -->
+		<mods:relatedItem type="host">
+			<mods:titleInfo>
+				<mods:nonSort/>
+				<mods:title>History of Adoption Project</mods:title>
+			</mods:titleInfo>
+			<mods:titleInfo type="alternative">
+				<mods:nonSort>The</mods:nonSort>
+				<mods:title>search for family: a social and political history of adoption in Australia</mods:title>
+			</mods:titleInfo>
+			<mods:name type="corporate">
+				<mods:namePart>Australian Research Council.</mods:namePart>
+				<mods:affiliation/>
+				<mods:role>
+					<mods:roleTerm type="text">Funding body</mods:roleTerm>
+				</mods:role>
+			</mods:name>
+			<!-- researcher names -->
+			<mods:name type="personal" ID="researcher URI where known">
+				<!--  OR  <mods:name type="personal"  xlink:href="researcher hdl"> -->
+				<mods:namePart type="family">___researcher_lastname___</mods:namePart>
+				<mods:namePart type="given">___researcher_firstname___</mods:namePart>
+				<mods:affiliation/>
+				<mods:role>
+					<mods:roleTerm type="text">Researcher</mods:roleTerm>
+				</mods:role>
+			</mods:name>
+						<!-- project URL -->
+						<mods:identifier type="uri">http://arts.monash.edu.au/historyofadoption/</mods:identifier>
+		</mods:relatedItem>
+		<mods:language>
+			<!-- this is a 3-letter language code from iso639-2b; it describes the language of the content -->
+			<mods:languageTerm type="code" authority="iso639-2b">eng</mods:languageTerm>
+		</mods:language>
+		<!-- an identifier element for a local unique number ie HOA-recording1, etc., if required -->
+		<mods:identifier type="local" displayLabel="Identifier"/>
+		___identifier___
+		<physicalDescription>
+			<internetMediaType>application/pdf</internetMediaType>
+		</physicalDescription>
+		<mods:accessCondition>Copyright 2010. Monash University. Faculty of Arts. History of Adoption Project</mods:accessCondition>
+	</mods:modsCollection>
+</mods:mods>

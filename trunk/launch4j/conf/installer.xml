@@ -1,0 +1,15 @@
+<launch4jConfig>
+  <headerType>console</headerType>
+  <jar>../installer.jar</jar>
+  <outfile>../installer.exe</outfile>
+  <errTitle>installer</errTitle>
+  <chdir>.</chdir>
+  <customProcName>true</customProcName>
+  <icon>kashgar.ico</icon>
+  <jre>
+    <minVersion>1.4.0</minVersion>
+  </jre>
+  <singleInstance>
+    <mutexName>au.edu.monash.merc.kashgar.installer.Installer</mutexName>
+  </singleInstance> 
+</launch4jConfig>

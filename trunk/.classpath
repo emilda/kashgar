@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src/java"/>
+	<classpathentry kind="lib" path="launch4j/launch4j.jar"/>
+	<classpathentry kind="lib" path="launch4j/lib/commons-beanutils.jar"/>
+	<classpathentry kind="lib" path="launch4j/lib/commons-logging.jar"/>
+	<classpathentry kind="lib" path="launch4j/lib/forms.jar"/>
+	<classpathentry kind="lib" path="launch4j/lib/formsrt.jar"/>
+	<classpathentry kind="lib" path="launch4j/lib/foxtrot.jar"/>
+	<classpathentry kind="lib" path="launch4j/lib/looks.jar"/>
+	<classpathentry kind="lib" path="launch4j/lib/xstream.jar"/>
+	<classpathentry kind="lib" path="lib/commons-lang-2.3.jar"/>
+	<classpathentry kind="lib" path="lib/Entagged-0.35.jar"/>
+	<classpathentry kind="lib" path="lib/hsqldb.jar"/>
+	<classpathentry kind="lib" path="lib/it.tidalwave.imageio.raw-1.6.1.jar"/>
+	<classpathentry kind="lib" path="lib/jai_codec.jar"/>
+	<classpathentry kind="lib" path="lib/jai_core.jar"/>
+	<classpathentry kind="lib" path="lib/jdom.jar"/>
+	<classpathentry kind="lib" path="lib/log4j-1.2.15.jar"/>
+	<classpathentry kind="lib" path="lib/mlibwrapper_jai.jar"/>
+	<classpathentry kind="lib" path="lib/registry.jar"/>
+	<classpathentry kind="lib" path="lib/squareness.jar"/>
+	<classpathentry kind="lib" path="lib/ui.jar"/>
+	<classpathentry kind="lib" path="lib/xmpcore.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="lib/metadataExtractor.jar" sourcepath="/Users/emilda/Documents/project-docs/kashgar/metadata-extractor-2.5.0-RC2-src.jar"/>
+	<classpathentry kind="output" path="build/classes"/>
+</classpath>

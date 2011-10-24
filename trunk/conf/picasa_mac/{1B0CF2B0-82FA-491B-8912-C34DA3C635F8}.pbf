@@ -1,0 +1,13 @@
+<?xml  version="1.0" encoding="utf-8" ?>
+<buttons format="1" version="0.2">
+  <button id="kashgar/{1B0CF2B0-82FA-491B-8912-C34DA3C635F8}" type="dynamic">
+    <icon name="{1B0CF2B0-82FA-491B-8912-C34DA3C635F8}.psd/Layer 1" src="pbz"/>
+    <label>Export Metadata</label>
+    <tooltip>Export Metadata</tooltip>
+    <action  verb="trayexec">
+      <param name="export"  value="0"/>
+      <param name="foreach"  value="0"/>
+      <param name="bundleid" value="au.edu.monash.merc.kashgar"/>
+    </action>
+  </button>
+</buttons>

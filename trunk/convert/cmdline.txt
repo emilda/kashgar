@@ -1,0 +1,3 @@
+convert -gamma 2 -modulate 140,125 050333_DG8L3838.DCR 050333_DG8L3838.jpg
+
+convert -auto-gamma -auto-level -modulate 105 050333_DG8L3979.DCR 11copy_050333_DG8L3979.jpg

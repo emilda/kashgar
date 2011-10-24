@@ -1,0 +1,408 @@
+<project name="kashgar" default="dist_win" basedir=".">
+	<property name="app.name" value="kashgar" />
+	<property name="installer.name" value="installer" />
+	<property name="src.java.dir" location="src/java" />
+	<property name="lib.dir" location="lib" />
+	<property name="build.dir" location="build" />
+	<property name="build.classes.dir" location="${build.dir}/classes" />
+	<property name="conf.dir" location="conf" />
+	<property name="picasa.win.install.dir" location="${conf.dir}/picasa_win" />
+	<property name="picasa.mac.install.dir" location="${conf.dir}/picasa_mac" />
+
+	<property name="convert.dir" location="convert" />
+	<property name="launch4j.dir" location="launch4j" />
+	<property name="launch4j.conf.dir" location="${launch4j.dir}/conf" />
+	<property name="launch4j.lib.dir" location="${launch4j.dir}/lib" />
+
+	<property name="dist.dir" location="dist" />
+	<property name="dist.classes.dir" location="${dist.dir}/classes" />
+	<property name="dist.tmp.dir" location="${dist.dir}/tmp" />
+	<property name="dist.tmp.lib.dir" location="${dist.tmp.dir}/lib" />
+	<property name="dist.tmp.win.dir" location="${dist.tmp.dir}/win" />
+	<property name="dist.tmp.logs.dir" location="${dist.tmp.dir}/logs" />
+	<property name="dist.tmp.conf.dir" location="${dist.tmp.dir}/conf" />
+	<property name="dist.tmp.convert.dir" location="${dist.tmp.dir}/convert" />
+	<property name="dist.tmp.output.dir" location="${dist.tmp.dir}/output" />
+	<property name="dist.tmp.picasa.dir" location="${dist.tmp.dir}/picasa" />
+	<property name="dist.tmp.kashgar.jar.dir" location="${dist.tmp.dir}/kashgar_jar" />
+	<property name="mac.kashgar.dist.dir" location="mac_kashgar_dist" />
+
+	<property name="macos.dir" location="${mac.kashgar.dist.dir}/Kashgar_app/Contents/MacOS" />
+	<property name="image.magick.bin.dir" location="${mac.kashgar.dist.dir}/Kashgar_app/Contents/Resources/MacIM/ImageMagick-6.6.5/bin" />
+
+	<property name="dist.tmp.kashgar.app.dir" location="${dist.tmp.dir}/Kashgar.app" />
+	<property name="dist.tmp.macos.dir" location="${dist.tmp.kashgar.app.dir}/Contents/MacOS" />
+	<property name="dist.tmp.image.magick.bin.dir" location="${dist.tmp.kashgar.app.dir}/Contents/Resources/MacIM/ImageMagick-6.6.5/bin" />
+	<property name="dist.tmp.kashgar.resource.dir" location="${dist.tmp.kashgar.app.dir}/Contents/Resources" />
+	<property name="dist.tmp.kashgar.resource.java.dir" location="${dist.tmp.kashgar.resource.dir}/java" />
+
+
+
+
+	<path id="build.classpath">
+		<pathelement path="${build.classes.dir}" />
+		<fileset dir="${lib.dir}">
+			<include name="**/*.jar" />
+			<exclude name="**/ui.jar" />
+		</fileset>
+	</path>
+
+	<target name="init">
+		<tstamp />
+		<mkdir dir="${build.dir}" />
+		<mkdir dir="${build.classes.dir}" />
+		<mkdir dir="${dist.dir}" />
+		<mkdir dir="${dist.classes.dir}" />
+		<mkdir dir="${dist.tmp.dir}" />
+		<mkdir dir="${dist.tmp.lib.dir}" />
+		<mkdir dir="${dist.tmp.win.dir}" />
+		<mkdir dir="${dist.tmp.conf.dir}" />
+		<mkdir dir="${dist.tmp.logs.dir}" />
+		<mkdir dir="${dist.tmp.convert.dir}" />
+		<mkdir dir="${dist.tmp.picasa.dir}" />
+	</target>
+
+	<target name="mac_init">
+		<tstamp />
+		<mkdir dir="${build.dir}" />
+		<mkdir dir="${build.classes.dir}" />
+		<mkdir dir="${dist.dir}" />
+		<mkdir dir="${dist.classes.dir}" />
+		<mkdir dir="${dist.tmp.dir}" />
+		<mkdir dir="${dist.tmp.kashgar.jar.dir}" />
+	</target>
+
+	<target name="mac_compile" depends="mac_init" description="compile the java source codes ... ">
+		<javac srcdir="${src.java.dir}" destdir="${build.classes.dir}" debug="on" deprecation="on" optimize="off" includes="**">
+			<classpath refid="build.classpath" />
+		</javac>
+		<copy todir="${build.classes.dir}">
+			<fileset dir="${conf.dir}">
+				<include name="**/log4j.properties" />
+			</fileset>
+		</copy>
+	</target>
+
+	<target name="mac_kashgar_jar" depends="mac_compile" description="creating kashgar jar file">
+		<fileset dir="${lib.dir}" id="kashgar.lib.filesets">
+			<include name="**/*.jar" />
+			<exclude name="**/registry.jar" />
+			<exclude name="**/ui.jar" />
+		</fileset>
+		<pathconvert property="kashgar.classpath" pathsep=" " refid="kashgar.lib.filesets">
+			<mapper>
+				<chainedmapper>
+					<flattenmapper />
+					<globmapper from="*.jar" to="../lib/*.jar" />
+				</chainedmapper>
+			</mapper>
+		</pathconvert>
+
+		<!-- copy the built classes and properties file -->
+		<mkdir dir="${dist.classes.dir}" />
+		<copy todir="${dist.classes.dir}">
+			<fileset dir="${build.classes.dir}">
+				<include name="**/**" />
+				<exclude name="au/edu/monash/merc/kashgar/installer/**" />
+			</fileset>
+		</copy>
+		<!-- end of copy files -->
+
+		<!-- Put everything in ${build} into a jar file -->
+		<jar destfile="${dist.tmp.kashgar.jar.dir}/${app.name}.jar">
+			<fileset dir="${dist.classes.dir}">
+				<include name="**/**" />
+			</fileset>
+			<manifest>
+				<!-- SET YOUR MAIN CLASS HERE -->
+				<attribute name="Main-Class" value="au.edu.monash.merc.kashgar.image.KashgarGUI" />
+				<attribute name="Class-Path" value="${kashgar.classpath}" />
+			</manifest>
+		</jar>
+		<!-- delete the dist classes dir tmp dir -->
+		<delete dir="${dist.classes.dir}" />
+	</target>
+
+	<target name="win_compile" depends="init" description="compile the java source codes ... ">
+		<javac srcdir="${src.java.dir}" destdir="${build.classes.dir}" debug="on" deprecation="on" optimize="off" includes="**">
+			<classpath refid="build.classpath" />
+			<exclude name="au/edu/monash/merc/kashgar/image/MacMain.java" />
+		</javac>
+		<copy todir="${build.classes.dir}">
+			<fileset dir="${conf.dir}">
+				<include name="**/*.properties" />
+			</fileset>
+		</copy>
+	</target>
+
+	<target name="kashgar_jar" depends="win_compile" description="creating kashgar jar file">
+		<fileset dir="${lib.dir}" id="kashgar.lib.filesets">
+			<include name="**/*.jar" />
+			<exclude name="**/registry.jar" />
+			<exclude name="**/ui.jar" />
+		</fileset>
+		<pathconvert property="kashgar.classpath" pathsep=" " refid="kashgar.lib.filesets">
+			<mapper>
+				<chainedmapper>
+					<flattenmapper />
+					<globmapper from="*.jar" to="../lib/*.jar" />
+				</chainedmapper>
+			</mapper>
+		</pathconvert>
+
+		<!-- copy the built classes and properties file -->
+		<mkdir dir="${dist.classes.dir}" />
+		<copy todir="${dist.classes.dir}">
+			<fileset dir="${build.classes.dir}">
+				<include name="**/**" />
+				<exclude name="au/edu/monash/merc/kashgar/installer/**" />
+				<exclude name="**/install_log4j.properties" />
+			</fileset>
+		</copy>
+		<!-- end of copy files -->
+
+		<!-- Put everything in ${build} into a jar file -->
+		<jar destfile="${dist.tmp.win.dir}/${app.name}.jar">
+			<fileset dir="${dist.classes.dir}">
+				<include name="**/**" />
+			</fileset>
+			<manifest>
+				<!-- SET YOUR MAIN CLASS HERE -->
+				<attribute name="Main-Class" value="au.edu.monash.merc.kashgar.image.KashgarGUI" />
+				<attribute name="Class-Path" value="${kashgar.classpath}" />
+			</manifest>
+		</jar>
+		<!-- delete the dist classes dir tmp dir -->
+		<delete dir="${dist.classes.dir}" />
+	</target>
+
+	<target name="installer_jar" depends="win_compile" description="creating installer jar file">
+		<path id="installer.lib.path">
+			<pathelement location="${lib.dir}/log4j-1.2.15.jar" />
+			<pathelement location="${lib.dir}/registry.jar" />
+			<pathelement location="${lib.dir}/commons-lang-2.3.jar" />
+		</path>
+
+		<pathconvert property="dist.installer.classpath" pathsep=" ">
+			<path refid="installer.lib.path" />
+			<mapper>
+				<chainedmapper>
+					<flattenmapper />
+					<globmapper from="*.jar" to="lib/*.jar" />
+				</chainedmapper>
+			</mapper>
+		</pathconvert>
+
+		<!-- copy the built classes and properties file -->
+		<mkdir dir="${dist.classes.dir}" />
+		<copy todir="${dist.classes.dir}">
+			<fileset dir="${build.classes.dir}">
+				<include name="au/edu/monash/merc/kashgar/installer/**" />
+				<include name="**/install_log4j.properties" />
+			</fileset>
+		</copy>
+		<!-- end of copy files -->
+
+		<!-- rename the install log4j properties file -->
+		<rename src="${dist.classes.dir}/install_log4j.properties" dest="${dist.classes.dir}/log4j.properties" />
+
+		<!-- Put everything in ${build} into a jar file -->
+		<jar destfile="${dist.tmp.win.dir}/${installer.name}.jar">
+			<fileset dir="${dist.classes.dir}">
+				<include name="**/**" />
+			</fileset>
+			<manifest>
+				<!-- SET YOUR MAIN CLASS HERE -->
+				<attribute name="Main-Class" value="au.edu.monash.merc.kashgar.installer.Installer" />
+				<attribute name="Class-Path" value="${dist.installer.classpath}" />
+			</manifest>
+		</jar>
+		<!-- delete the dist classes dir tmp dir -->
+		<delete dir="${dist.classes.dir}" />
+	</target>
+
+	<target name="copy_libs">
+		<copy todir="${dist.tmp.lib.dir}">
+			<fileset dir="${lib.dir}">
+				<include name="**/*.*" />
+				<exclude name="**/ui.jar" />
+			</fileset>
+		</copy>
+	</target>
+
+	<target name="pre_dist_win" depends="clean, kashgar_exe, installer_exe, makepbz_win">
+		<copy todir="${dist.tmp.convert.dir}">
+			<fileset dir="${convert.dir}">
+				<include name="**/*.*" />
+			</fileset>
+		</copy>
+		<copy todir="${dist.tmp.picasa.dir}">
+			<fileset dir="${picasa.win.install.dir}">
+				<include name="**/*.pbz" />
+				<include name="**/*.htm" />
+			</fileset>
+		</copy>
+
+		<echo>delete the pbz file after copy!</echo>
+		<delete file="${picasa.win.install.dir}/*.pbz" />
+
+		<copy todir="${dist.tmp.conf.dir}">
+			<fileset dir="${conf.dir}">
+				<include name="**/*.xml" />
+			</fileset>
+		</copy>
+
+		<mkdir dir="${dist.tmp.output.dir}" />
+		<echo>pre-dist files have been created successfully!</echo>
+	</target>
+
+	<!-- make a pbz file for win version -->
+	<target name="makepbz_win">
+		<mkdir dir="${picasa.win.install.dir}/tmp" />
+		<copy todir="${picasa.win.install.dir}/tmp">
+			<fileset dir="${picasa.win.install.dir}">
+				<include name="**/*.pbf" />
+			</fileset>
+			<fileset dir="${picasa.win.install.dir}">
+				<include name="**/*.psd" />
+			</fileset>
+		</copy>
+		<zip destfile="${picasa.win.install.dir}/${app.name}.pbz" basedir="${picasa.win.install.dir}/tmp" />
+		<delete dir="${picasa.win.install.dir}/tmp" />
+	</target>
+
+	<!-- pre-distribute a mac version -->
+	<target name="pre_dist_mac" depends="clean, mac_kashgar_jar, makepbz_mac">
+		<mkdir dir="${dist.tmp.kashgar.app.dir}" />
+
+		<copy todir="${dist.tmp.kashgar.app.dir}">
+			<fileset dir="${mac.kashgar.dist.dir}/Kashgar_app">
+				<include name="**/*.*" />
+			</fileset>
+		</copy>
+		<mkdir dir="${dist.tmp.kashgar.resource.dir}/logs" />
+		<mkdir dir="${dist.tmp.kashgar.resource.dir}/conf" />
+		<copy todir="${dist.tmp.kashgar.resource.dir}/conf">
+			<fileset dir="${conf.dir}">
+				<include name="**/*.xml" />
+			</fileset>
+		</copy>
+
+		<mkdir dir="${dist.tmp.macos.dir}" />
+
+		<copy todir="${dist.tmp.macos.dir}">
+			<fileset dir="${macos.dir}">
+				<include name="**/JavaApplicationStub" />
+			</fileset>
+		</copy>
+
+		<chmod perm="755" verbose="true">
+			<fileset dir="${dist.tmp.macos.dir}">
+				<include name="**/JavaApplicationStub" />
+			</fileset>
+		</chmod>
+
+		<mkdir dir="${dist.tmp.image.magick.bin.dir}" />
+		<copy todir="${dist.tmp.image.magick.bin.dir}">
+			<fileset dir="${image.magick.bin.dir}">
+				<include name="**/animate" />
+				<include name="**/compare" />
+				<include name="**/composite" />
+				<include name="**/conjure" />
+				<include name="**/convert" />
+				<include name="**/display" />
+				<include name="**/identify" />
+				<include name="**/import" />
+				<include name="**/Magick-config" />
+				<include name="**/Magick++-config" />
+				<include name="**/MagickCore-config" />
+				<include name="**/MagickWand-config" />
+				<include name="**/mogrify" />
+				<include name="**/montage" />
+				<include name="**/stream" />
+				<include name="**/ufraw-batch" />
+				<include name="**/Wand-config" />
+
+			</fileset>
+		</copy>
+
+		<copy todir="${dist.tmp.kashgar.resource.java.dir}">
+			<fileset dir="${lib.dir}">
+				<include name="**/*.*" />
+				<exclude name="**/ui.jar" />
+			</fileset>
+		</copy>
+
+		<copy todir="${dist.tmp.kashgar.resource.java.dir}">
+			<fileset dir="${dist.tmp.kashgar.jar.dir}">
+				<include name="**/*.jar" />
+			</fileset>
+		</copy>
+		<delete dir="${dist.tmp.kashgar.jar.dir}" />
+
+		<copy todir="${dist.tmp.dir}">
+			<fileset dir="${picasa.mac.install.dir}">
+				<include name="**/*.pbz" />
+				<include name="**/*.html" />
+			</fileset>
+		</copy>
+
+		<chmod perm="755" verbose="true">
+			<fileset dir="${dist.tmp.image.magick.bin.dir}">
+				<include name="**/**" />
+			</fileset>
+		</chmod>
+		
+		<echo>delete the pbz file after copy!</echo>
+		<delete file="${picasa.mac.install.dir}/${app.name}.pbz" />
+		<echo>pre-dist mac version has been created successfully!</echo>
+
+	</target>
+
+	<!-- make a mac pbz file -->
+	<target name="makepbz_mac">
+		<mkdir dir="${picasa.mac.install.dir}/tmp" />
+		<copy todir="${picasa.mac.install.dir}/tmp">
+			<fileset dir="${picasa.mac.install.dir}">
+				<include name="**/*.pbf" />
+			</fileset>
+			<fileset dir="${picasa.mac.install.dir}">
+				<include name="**/*.psd" />
+			</fileset>
+		</copy>
+		<zip destfile="${picasa.mac.install.dir}/${app.name}.pbz" basedir="${picasa.mac.install.dir}/tmp" />
+		<delete dir="${picasa.mac.install.dir}/tmp" />
+	</target>
+
+	<!-- distribute all file into win version -->
+	<target name="dist_win" depends="pre_dist_win">
+		<echo>starting to zip all files into win version ... </echo>
+		<zip destfile="${dist.dir}/${app.name}.zip" basedir="${dist.tmp.dir}" />
+		<echo>${app.name}.zip has been created!</echo>
+	</target>
+
+	<!-- distribute all file into mac version -->
+	<target name="dist_mac" depends="pre_dist_mac">
+		<echo>starting to tar all files into mac version ... </echo>
+		<exec executable="/usr/bin/tar" dir="${dist.tmp.dir}">
+			<arg line=" -czf ${dist.dir}/${app.name}.tar.gz ." />
+		</exec>
+		<echo>${app.name}.tar.gz has been created</echo> 
+		<delete dir="${dist.tmp.dir}" />
+	</target>
+
+	<target name="kashgar_exe" depends="kashgar_jar, copy_libs">
+		<taskdef name="launch4j" classname="net.sf.launch4j.ant.Launch4jTask" classpath="${launch4j.dir}/launch4j.jar:${launch4j.lib.dir}/xstream.jar" />
+		<launch4j configFile="${launch4j.conf.dir}/kashgar.xml" outfile="${dist.tmp.win.dir}/${app.name}.exe" jar="${dist.tmp.win.dir}/${app.name}.jar" />
+	</target>
+
+	<target name="installer_exe" depends="installer_jar, copy_libs">
+		<taskdef name="launch4j" classname="net.sf.launch4j.ant.Launch4jTask" classpath="${launch4j.dir}/launch4j.jar:${launch4j.dir}/lib/xstream.jar" />
+		<launch4j configFile="${launch4j.conf.dir}/installer.xml" outfile="${dist.tmp.dir}/${installer.name}.exe" jar="${dist.tmp.win.dir}/${installer.name}.jar" />
+	</target>
+
+	<target name="clean" description="clean up">
+		<delete dir="${build.dir}" />
+		<delete dir="${dist.dir}" />
+	</target>
+</project>

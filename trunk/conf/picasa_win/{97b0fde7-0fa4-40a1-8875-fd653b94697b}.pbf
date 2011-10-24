@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<buttons format="1" version="1">
+  <button id="Monash/{97b0fde7-0fa4-40a1-8875-fd653b94697b}" type="dynamic">
+    <icon name="{97b0fde7-0fa4-40a1-8875-fd653b94697b}/photo" src="pbz"/>
+    <label>Export Metadata</label>
+    <tooltip>Monash Kashgar application to extract metadata</tooltip>
+    <action verb="trayexec">
+     <param name="exe_name" value="kashgar.exe"/>
+     <param  name="exe_path_regkey" value="HKEY_LOCAL_MACHINE\SOFTWARE\KashgarPicasa\installPath"/>
+     <param name="export" value="0"/>
+  </action>
+  </button>
+</buttons>
