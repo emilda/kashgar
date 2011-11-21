@@ -26,13 +26,18 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 package au.edu.monash.merc.kashgar.image;
-
+/**
+ * Utility stuff related to reading file from the input folder mentioned.
+ */
 import java.io.File;
 import java.io.FileFilter;
 import java.io.FilenameFilter;
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * @author Sindhu Emilda
+ * @version v2.0
+ */
 public class FilesReader
 {
 	static String[] supportedExtn = {".dcr", ".nef", ".jpg", ".jpeg", ".tif", ".tiff", ".bmp", ".gif",
@@ -67,7 +72,13 @@ public class FilesReader
 	{
 		return processPhotos;
 	}
-
+	
+	/**
+	 * Load the file details from the input folder and sub directories underneath 
+	 * into the various data structures.
+	 * @param curFolder
+	 * @return
+	 */
 	public static List<ReportLog> loadFiles(File curFolder)
 	{
 		noOfFile = 0;
@@ -80,6 +91,16 @@ public class FilesReader
 		return rLogs;
 	}
 
+	/**
+	 * Find the supported file in the current folder. Supported files
+	 * types are mentioned in FileReader.supportedExtn. Files that needs to be processed
+	 * are stored into FilesReader.processPhotos.
+	 * 
+	 * File name filter and photo filter are defined to find the supported files.
+	 * ReportLog is populated with unsupported files (if any).
+	 * @param curFolder
+	 * @return
+	 */
 	public static Folder findFiles(File curFolder)
 	{
 		Folder topFolder = new Folder();

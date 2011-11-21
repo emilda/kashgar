@@ -26,7 +26,15 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 package au.edu.monash.merc.kashgar.image;
-
+/**
+ * Java interface to Exiftool by Phil Harvey. 
+ * 
+ * ExifTool is a platform-independent Perl library plus a command-line application for 
+ * reading, writing and editing meta  information in a wide variety of files. 
+ * 
+ * ExifTool supports many different metadata formats including EXIF, GPS, IPTC, XMP, 
+ * makernotes and other meta information in image, audio and video files.
+ */
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -36,7 +44,10 @@ import java.io.OutputStreamWriter;
 import java.io.Writer;
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * @author Sindhu Emilda
+ * @version v2.0
+ */
 public class Exiftool {
 
 	public static final String LOG_PREFIX = "[exiftool] ";
@@ -215,7 +226,6 @@ public class Exiftool {
 		// Reading response back from Exiftool..."
 		while ((line = streams.reader.readLine()) != null) {
 			out.write(line + "\n");
-			//UtilFn.log(LOG_PREFIX, "No.: %s", line);
 		}
 		out.flush();
 		out.close();

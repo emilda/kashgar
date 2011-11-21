@@ -26,7 +26,9 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 package au.edu.monash.merc.kashgar.image;
-
+/**
+ * Main entry point from Picasa.
+ */
 import java.awt.Button;
 import java.awt.Checkbox;
 import java.awt.Component;
@@ -50,7 +52,10 @@ import javax.swing.JProgressBar;
 import javax.swing.JSlider;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
-
+/**
+ * @author Sindhu Emilda
+ * @version v2.0
+ */
 public class KashgarGUI extends JPanel implements ActionListener {
 	private SettingManager[] setting = new SettingManager[5];
 

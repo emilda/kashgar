@@ -26,7 +26,10 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 package au.edu.monash.merc.kashgar.image;
-
+/**
+ * Generates the required descriptive values for monashkashgar metadata for Arrow 
+ * as the metadata extracted by exiftool is values only.
+ */
 import it.tidalwave.imageio.dcr.DCRImageReaderSpi;
 import it.tidalwave.imageio.io.FileImageInputStream2;
 import it.tidalwave.imageio.nef.NEFImageReaderSpi;
@@ -45,7 +48,10 @@ import com.drew.metadata.Metadata;
 import com.drew.metadata.MetadataException;
 import com.drew.metadata.Tag;
 import com.drew.metadata.exif.ExifThumbnailDirectory;
-
+/**
+ * @author Sindhu Emilda
+ * @version v2.0
+ */
 public class MetadataManager
 {
 	private Logger logger = Logger.getLogger(this.getClass().getName());
@@ -54,6 +60,12 @@ public class MetadataManager
 
 	MetadataManager() {}
 
+	/**
+	 * Checks if the image is raw.
+	 * Not used at the moment.
+	 * @param fileLoc
+	 * @return
+	 */
 	public static boolean isRaw(String fileLoc) {
 		File file = new File(fileLoc);
 		try {
@@ -77,7 +89,9 @@ public class MetadataManager
 
 	/**
 	 * This method extracts metadata from the image file using the Java metadata
-	 * extractor by drewnoakes
+	 * extractor by drewnoakes. 
+	 * Not used at the moment as this library fails to read certain files and the 
+	 * metadata returned is not very comprehensive.
 	 * @param fileLoc
 	 * @return
 	 */
@@ -114,7 +128,8 @@ public class MetadataManager
 	}
 
 	/**
-	 * Generates thumbnail using the library from drewnoakes
+	 * Generates thumbnail using the library from drewnoakes.
+	 * Not used at the moment.
 	 * @param fileLoc
 	 * @throws MetadataException
 	 * @throws IOException
@@ -137,6 +152,14 @@ public class MetadataManager
 		}
 	}
 
+	/**
+	 * Generates the custom metadata tag based on  user input in the interface.
+	 * @param format
+	 * @param num
+	 * @param total
+	 * @param name
+	 * @return
+	 */
 	public static MonashTag getCustomMetadataTag(String format, int num, int total, String name)
 	{
 		String customTag = format;
@@ -146,6 +169,11 @@ public class MetadataManager
 		return new MonashTag("ImageNumber", customTag);
 	}
 	
+	/**
+	 * Get the file related tags as required by Arrow.
+	 * @param img_filename
+	 * @return
+	 */
 	public static List<MonashTag> getFileTags(String img_filename) {
 		List<MonashTag> fileTags = new ArrayList<MonashTag>();
 		
@@ -161,6 +189,11 @@ public class MetadataManager
 		return fileTags;
 	}
 
+	/**
+	 * Get the descriptive test for FileSource required by Arrow.
+	 * @param type
+	 * @return
+	 */
 	public static MonashTag getFileSourceTxt(String fileSource) {
 		try {
 			int fsource = Integer.parseInt(fileSource);
@@ -177,6 +210,11 @@ public class MetadataManager
 		}
 	}
 
+	/**
+	 * Get the descriptive test for SceneType required by Arrow.
+	 * @param type
+	 * @return
+	 */
 	public static MonashTag getSceneTypeTxt(String sceneType) {
 		try {
 			int sType = Integer.parseInt(sceneType);
@@ -191,6 +229,11 @@ public class MetadataManager
 		}
 	}
 
+	/**
+	 * Get the descriptive test for Dimensions required by Arrow.
+	 * @param type
+	 * @return
+	 */
 	public static MonashTag getPixelDimension(String xDimn, String yDimn) {
 		try {
 			int x = Integer.parseInt(xDimn);
@@ -202,6 +245,11 @@ public class MetadataManager
 		}
 	}
 
+	/**
+	 * Get the descriptive test for ExposureProgram required by Arrow.
+	 * @param type
+	 * @return
+	 */
 	public static MonashTag getExposureProgramTxt(String expPgm) {
 		try {
 			int ep = Integer.parseInt(expPgm);
@@ -223,6 +271,11 @@ public class MetadataManager
 		}
 	}
 
+	/**
+	 * Get the descriptive test for MeteringMode required by Arrow.
+	 * @param type
+	 * @return
+	 */
 	public static MonashTag getMeteringModeTxt(String mMode) {
 		try {
 			int mm = Integer.parseInt(mMode);
@@ -243,6 +296,11 @@ public class MetadataManager
 		}
 	}
 
+	/**
+	 * Get the descriptive test for Compression required by Arrow.
+	 * @param type
+	 * @return
+	 */
 	public static MonashTag getCompressionTxt(String comprsn) {
 		try {
 			int com = Integer.parseInt(comprsn);
@@ -295,6 +353,11 @@ public class MetadataManager
 		}
 	}
 
+	/**
+	 * Get the descriptive test for ExposureMode required by Arrow.
+	 * @param type
+	 * @return
+	 */
 	public static MonashTag getExposureModeTxt(String emode) {
 		try {
 			int em = Integer.parseInt(emode);
@@ -311,6 +374,11 @@ public class MetadataManager
 		}
 	}
 
+	/**
+	 * Get the descriptive test for CustomRendered required by Arrow.
+	 * @param type
+	 * @return
+	 */
 	public static MonashTag getCustomRenderedTxt(String type) {
 		try {
 			int cr = Integer.parseInt(type);
@@ -326,6 +394,11 @@ public class MetadataManager
 		}
 	}
 
+	/**
+	 * Get the descriptive test for Contrast required by Arrow.
+	 * @param type
+	 * @return
+	 */
 	public static MonashTag getContrastTxt(String type) {
 		try {
 			int cr = Integer.parseInt(type);
@@ -342,6 +415,11 @@ public class MetadataManager
 		}
 	}
 
+	/**
+	 * Get the descriptive test for PhotometricInterpretation required by Arrow.
+	 * @param type
+	 * @return
+	 */
 	public static MonashTag getPhotometricInterpretationTxt(String type) {
 		try {
 			int pi = Integer.parseInt(type);
@@ -369,6 +447,11 @@ public class MetadataManager
 		}
 	}
 
+	/**
+	 * Get the descriptive test for PlanarConfiguration required by Arrow.
+	 * @param type
+	 * @return
+	 */
 	public static MonashTag getPlanarConfigurationTxt(String type) {
 		try {
 			int pc = Integer.parseInt(type);
@@ -384,6 +467,11 @@ public class MetadataManager
 		}
 	}
 
+	/**
+	 * Get the descriptive test for ResolutionUnit required by Arrow.
+	 * @param type
+	 * @return
+	 */
 	public static MonashTag getResolutionUnitTxt(String type) {
 		try {
 			int pc = Integer.parseInt(type);
@@ -399,6 +487,11 @@ public class MetadataManager
 		}
 	}
 
+	/**
+	 * Get the descriptive test for SensingMethod required by Arrow.
+	 * @param type
+	 * @return
+	 */
 	public static MonashTag getSensingMethodTxt(String type) {
 		try {
 			int sm = Integer.parseInt(type);
@@ -420,6 +513,11 @@ public class MetadataManager
 		}
 	}
 
+	/**
+	 * Get the descriptive test for SceneCaptureType required by Arrow.
+	 * @param type
+	 * @return
+	 */
 	public static MonashTag getSceneCaptureTypeTxt(String type) {
 		try {
 			int sc = Integer.parseInt(type);
@@ -437,6 +535,11 @@ public class MetadataManager
 		}
 	}
 
+	/**
+	 * Get the descriptive test for GainControl required by Arrow.
+	 * @param type
+	 * @return
+	 */
 	public static MonashTag getGainControlTxt(String type) {
 		try {
 			int gc = Integer.parseInt(type);
@@ -454,6 +557,11 @@ public class MetadataManager
 		}
 	}
 
+	/**
+	 * Get the descriptive test for Saturation required by Arrow.
+	 * @param type
+	 * @return
+	 */
 	public static MonashTag getSaturationTxt(String type) {
 		try {
 			int s = Integer.parseInt(type);
@@ -470,6 +578,11 @@ public class MetadataManager
 		}
 	}
 
+	/**
+	 * Get the descriptive test for Sharpness required by Arrow.
+	 * @param type
+	 * @return
+	 */
 	public static MonashTag getSharpnessTxt(String type) {
 		try {
 			int s = Integer.parseInt(type);
@@ -486,6 +599,11 @@ public class MetadataManager
 		}
 	}
 
+	/**
+	 * Get the descriptive test for SubjectDistanceRange required by Arrow.
+	 * @param type
+	 * @return
+	 */
 	public static MonashTag getSubjectDistanceRangeTxt(String type) {
 		try {
 			int sdr = Integer.parseInt(type);

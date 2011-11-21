@@ -26,12 +26,18 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 package au.edu.monash.merc.kashgar.image;
-
+/**
+ * Generates the log file, report.txt in the top folder of Kashgar 
+ * application.
+ */
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.util.List;
-
+/**
+ * @author Sindhu Emilda
+ * @version v2.0
+ */
 public class Report {
 	
 	public static boolean genReport(List<ReportLog> rLogs) {

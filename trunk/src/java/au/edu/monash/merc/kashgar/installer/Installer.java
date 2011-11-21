@@ -26,17 +26,26 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 package au.edu.monash.merc.kashgar.installer;
-
+/**
+ * Installer for Windows operating system.
+ */
 import java.awt.Desktop;
 import java.net.URI;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
-
+/**
+ * @author Sindhu Emilda
+ * @version v2.0
+ */
 public class Installer
 {
 	private Logger logger = Logger.getLogger(this.getClass().getName());
 
+	/**
+	 * Launches Picasa application and invokes the Kashgar application
+	 * Button/ Plugin installation file.
+	 */
 	public void installKashgar()
 	{
 		System.out.println("Starting to install the Kashgar application ... \n waiting ...");
@@ -60,6 +69,8 @@ public class Installer
 				char replaceChar = '/';
 
 				String path = StringUtils.replaceChars(currentDir, searchChar, replaceChar);
+				logger.info("Path: " + path);
+				path = path.replaceAll(" ", "%20");
 				String picInstallFile = "picasa://importbutton/?url=file:///" + path + "/picasa/kashgar.pbz";
 				System.out.println("Picasa Button Installation File - " + picInstallFile);
 				uri = new URI(picInstallFile);
@@ -73,6 +84,10 @@ public class Installer
 		logger.info("Installation is finished.");
 	}
 
+	/**
+	 * This class is invoked from Installar.exe for installing Kashgar application
+	 * in Windows operating system.
+	 */
 	public static void main(String[] args)
 	{
 		String javaHome = System.getProperty("java.home");

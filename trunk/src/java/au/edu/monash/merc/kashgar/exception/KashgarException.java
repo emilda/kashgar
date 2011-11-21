@@ -26,23 +26,43 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 package au.edu.monash.merc.kashgar.exception;
-
+/**
+ * Exception that can be thrown during the normal operation of the Java Virtual Machine..
+ * @author Sindhu Emilda
+ * @version v2.0
+ */
 public class KashgarException extends RuntimeException
 {
+	/**
+	 * Default Constructor. Constructs a new runtime exception with null as its detail message.
+	 */
 	public KashgarException() {
 		super();
 	}
 
+	/**
+	 * Constructs a new runtime exception with the specified detail message.
+	 * @param message
+	 * 				error message to set
+	 */
 	public KashgarException(String message)
 	{
 		super(message);
 	}
 
+	/**
+	 * Constructs a new runtime exception with the specified detail message and cause.
+	 */
 	public KashgarException(String message, Throwable cause)
 	{
 		super(message, cause);
 	}
 
+	/**
+	 * Constructs a new runtime exception with the specified cause 
+	 * and a detail message of (cause==null ? null : cause.toString()) 
+	 * (which typically contains the class and detail message of cause).
+	 */
 	public KashgarException(Throwable cause)
 	{
 		super(cause);

@@ -26,7 +26,9 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 package au.edu.monash.merc.kashgar.image;
-
+/**
+ * Converts the given image file into Jpeg with the options specified.
+ */
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -34,11 +36,22 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 
 import org.apache.log4j.Logger;
-
+/**
+ * @author Sindhu Emilda
+ * @version v2.0
+ */
 public class Converter {
 
 	private static Logger logger = Logger.getLogger(Converter.class.getName());
 	
+	/**
+	 * Set the path to exe and library for Mac or Windows. Uses Runtime to execute the convert command.
+	 * 
+	 * Convert is an executable from ImageMagick. ImageMagick® is a software suite to create, edit, 
+	 * compose, or convert images. It can read and write images in a variety of formats.
+	 * 
+	 * convert program is used to convert to JPEG image formats as well as resize if specified in options.
+	 */
 	public static String convert(String fromFile, String toFile, String options) {
 		String output = null;
 

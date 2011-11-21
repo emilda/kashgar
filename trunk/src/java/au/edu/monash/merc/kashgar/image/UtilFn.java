@@ -26,11 +26,16 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 package au.edu.monash.merc.kashgar.image;
-
+/**
+ * Utility function containing various utility methods.
+ */
 import java.io.File;
 import java.text.NumberFormat;
 import java.util.Calendar;
-
+/**
+ * @author Sindhu Emilda
+ * @version v2.0
+ */
 public class UtilFn
 {
 	private static Long freeDiskSpace;

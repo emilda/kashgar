@@ -26,11 +26,16 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 package au.edu.monash.merc.kashgar.image;
-
+/**
+ * Folder bean class with details containing names, files and any sub-directories.
+ */
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * @author Sindhu Emilda
+ * @version v2.0
+ */
 public class Folder
 {
 	private String folderName;

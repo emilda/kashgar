@@ -26,7 +26,11 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 package au.edu.monash.merc.kashgar.image;
-
+/**
+ * Contains the settings entered by user in the interface.
+ * @author Sindhu Emilda
+ * @version v2.0
+ */
 public class SettingManager
 {
 	private int uid;

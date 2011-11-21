@@ -26,7 +26,11 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 package au.edu.monash.merc.kashgar.image;
-
+/**
+ * Main class invoked in the Mac OS. Name of this class is given as
+ * the MainClass entry in Info.plist file contained under the
+ * mac_kashgar_dist directory.
+ */
 import javax.swing.JFrame;
 
 import com.apple.eawt.Application;
@@ -34,11 +38,12 @@ import com.apple.eawt.OpenFilesHandler;
 import com.apple.eawt.AppEvent;
 import java.util.List;
 import java.io.*;
-
+/**
+ * @author Sindhu Emilda
+ * @version v2.0
+ */
 public class MacMain extends JFrame {
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
 	static File topFolder;
 

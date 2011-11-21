@@ -26,7 +26,9 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 package au.edu.monash.merc.kashgar.image;
-
+/**
+ * Main thread that performs the main logic for the application.
+ */
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -38,7 +40,10 @@ import javax.xml.transform.stream.StreamSource;
 import org.apache.log4j.Logger;
 
 import com.adobe.xmp.XMPException;
-
+/**
+ * @author Sindhu Emilda
+ * @version v2.0
+ */
 public class MainThread implements Runnable {
 	
 	private static final String LOG_PREFIX = "[kashgar] ";
@@ -84,7 +89,10 @@ public class MainThread implements Runnable {
 	}
 
 	/**
-	 * Main Logic
+	 * Main Logic: Processes each file and extracts metadata using exiftool, 
+	 * other metadata required by Monash library is edited into the XMP
+	 * file. XML file generated based of the given XSLT file (if any).
+	 * Convert the image into JPEG and resize (if requested).
 	 */
 	public void run() {
 		File selectedFolder = new File(inLoc);

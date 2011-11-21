@@ -26,13 +26,19 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 package au.edu.monash.merc.kashgar.image;
-
+/**
+ * This thread does the ground work before the conversion or resizing of the images.
+ * Two of this thread are created in the MainThread.java.
+ */
 import java.io.*;
 
 import org.apache.log4j.Logger;
 
 import au.edu.monash.merc.kashgar.exception.KashgarException;
-
+/**
+ * @author Sindhu Emilda
+ * @version v2.0
+ */
 public class ExportToJpg implements ImageConvertor
 {
 	private static final String LOG_PREFIX = "[Export] ";

@@ -26,7 +26,12 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 package au.edu.monash.merc.kashgar.image;
-
+/**
+ * MonashTag contains data required to generate Monashkashgar tags. 
+ * This tags contains the data required by Arrow.
+ * @author Sindhu Emilda
+ * @version v2.0
+ */
 public class MonashTag {
 
 	private String name;

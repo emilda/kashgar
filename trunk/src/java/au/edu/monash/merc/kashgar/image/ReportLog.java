@@ -1,4 +1,3 @@
-
 /*
  * Copyright (c) 2010-2011, Monash e-Research Centre
  * (Monash University, Australia)
@@ -25,8 +24,17 @@
  * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
- */package au.edu.monash.merc.kashgar.image;
-
+ */
+package au.edu.monash.merc.kashgar.image;
+/**
+ * Log entries for the generating report.txt
+ * Mainly used to capture the errors generated while processing photos like
+ * file extension not supported, input folder does not exist or other 
+ * processing errors.
+ * 
+ * @author Sindhu Emilda
+ * @version v2.0
+ */
 public class ReportLog {
 
 	private String filename;

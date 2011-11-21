@@ -26,18 +26,22 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 package au.edu.monash.merc.kashgar.image;
-
+/**
+ * Transform based on the given XSLT file and output the XML file.
+ */
 import java.io.File;
 
 import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Result;
 import javax.xml.transform.Source;
 import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.stream.StreamResult;
-
+/**
+ * @author Sindhu Emilda
+ * @version v2.0
+ */
 public class XMPTransform {
 	
 	  public static void transform(Source xmp, Source xsl, File destination) throws TransformerException {

@@ -32,13 +32,22 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-
+/**
+ * @author Sindhu Emilda
+ * @version v2.0
+ */
 public class INIscanner
 {
 	public static void main(String args[]) {
 		INIscanner.readINIfile("/Users/emilda/Pictures/kashgar/photos/test-raw/kslide-0015.tif");
 	}
 	
+	/**
+	 * Metadata that are read from this file are: caption, keyword, geotag
+	 * 
+	 * @param path path to the folder containing .picasa.ini file.
+	 * @return List of MonashTag contining the metadata.
+	 */
 	public static List<MonashTag> readINIfile(String path)
 	{
 		List<MonashTag> iniTags = new ArrayList<MonashTag>();
@@ -86,6 +95,18 @@ public class INIscanner
 		}
 	}
 
+	/**
+	 * Utility function to scan for the given pattern in the data
+	 * Data for each file is given under the line containing file 
+	 * name in square brackets (if any). 
+	 * Eg: [temp.DCR]
+	 *		keywords=tag1, tag2
+	 *		caption=Magnificient
+	 *		geotag=39.470402,75.989754
+	 * @param pattern 
+	 * @param data
+	 * @return
+	 */
 	private static String scanData(String pattern, String data) {
 		Scanner patternScan = new Scanner(data);
 		patternScan.findWithinHorizon(pattern, 0);
