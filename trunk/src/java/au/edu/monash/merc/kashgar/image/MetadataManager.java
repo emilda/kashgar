@@ -64,7 +64,7 @@ public class MetadataManager
 	 * Checks if the image is raw.
 	 * Not used at the moment.
 	 * @param fileLoc
-	 * @return
+	 * @return true if it is a raw image
 	 */
 	public static boolean isRaw(String fileLoc) {
 		File file = new File(fileLoc);
@@ -93,7 +93,7 @@ public class MetadataManager
 	 * Not used at the moment as this library fails to read certain files and the 
 	 * metadata returned is not very comprehensive.
 	 * @param fileLoc
-	 * @return
+	 * @return List of metadata
 	 */
 	public ArrayList<Tag> getKnownMetadata(String fileLoc) {
 		File file = new File(fileLoc);
@@ -158,7 +158,7 @@ public class MetadataManager
 	 * @param num
 	 * @param total
 	 * @param name
-	 * @return
+	 * @return custom tag
 	 */
 	public static MonashTag getCustomMetadataTag(String format, int num, int total, String name)
 	{
@@ -172,7 +172,7 @@ public class MetadataManager
 	/**
 	 * Get the file related tags as required by Arrow.
 	 * @param img_filename
-	 * @return
+	 * @return file related tags
 	 */
 	public static List<MonashTag> getFileTags(String img_filename) {
 		List<MonashTag> fileTags = new ArrayList<MonashTag>();
@@ -192,7 +192,7 @@ public class MetadataManager
 	/**
 	 * Get the descriptive test for FileSource required by Arrow.
 	 * @param type
-	 * @return
+	 * @return descriptive test for FileSource
 	 */
 	public static MonashTag getFileSourceTxt(String fileSource) {
 		try {
@@ -213,7 +213,7 @@ public class MetadataManager
 	/**
 	 * Get the descriptive test for SceneType required by Arrow.
 	 * @param type
-	 * @return
+	 * @return the descriptive test for SceneType
 	 */
 	public static MonashTag getSceneTypeTxt(String sceneType) {
 		try {
@@ -232,7 +232,7 @@ public class MetadataManager
 	/**
 	 * Get the descriptive test for Dimensions required by Arrow.
 	 * @param type
-	 * @return
+	 * @return the descriptive test for Dimensions
 	 */
 	public static MonashTag getPixelDimension(String xDimn, String yDimn) {
 		try {
@@ -248,7 +248,7 @@ public class MetadataManager
 	/**
 	 * Get the descriptive test for ExposureProgram required by Arrow.
 	 * @param type
-	 * @return
+	 * @return the descriptive test for ExposureProgram
 	 */
 	public static MonashTag getExposureProgramTxt(String expPgm) {
 		try {
@@ -274,7 +274,7 @@ public class MetadataManager
 	/**
 	 * Get the descriptive test for MeteringMode required by Arrow.
 	 * @param type
-	 * @return
+	 * @return the descriptive test for MeteringMode
 	 */
 	public static MonashTag getMeteringModeTxt(String mMode) {
 		try {
@@ -299,7 +299,7 @@ public class MetadataManager
 	/**
 	 * Get the descriptive test for Compression required by Arrow.
 	 * @param type
-	 * @return
+	 * @return the descriptive test for Compression
 	 */
 	public static MonashTag getCompressionTxt(String comprsn) {
 		try {
@@ -356,7 +356,7 @@ public class MetadataManager
 	/**
 	 * Get the descriptive test for ExposureMode required by Arrow.
 	 * @param type
-	 * @return
+	 * @return the descriptive test for ExposureMode
 	 */
 	public static MonashTag getExposureModeTxt(String emode) {
 		try {
@@ -377,7 +377,7 @@ public class MetadataManager
 	/**
 	 * Get the descriptive test for CustomRendered required by Arrow.
 	 * @param type
-	 * @return
+	 * @return the descriptive test for CustomRendered
 	 */
 	public static MonashTag getCustomRenderedTxt(String type) {
 		try {
@@ -397,7 +397,7 @@ public class MetadataManager
 	/**
 	 * Get the descriptive test for Contrast required by Arrow.
 	 * @param type
-	 * @return
+	 * @return the descriptive test for Contrast
 	 */
 	public static MonashTag getContrastTxt(String type) {
 		try {
@@ -418,8 +418,8 @@ public class MetadataManager
 	/**
 	 * Get the descriptive test for PhotometricInterpretation required by Arrow.
 	 * @param type
-	 * @return
-	 */
+	 * @return the descriptive test for PhotometricInterpretation
+	 */ 
 	public static MonashTag getPhotometricInterpretationTxt(String type) {
 		try {
 			int pi = Integer.parseInt(type);
@@ -450,7 +450,7 @@ public class MetadataManager
 	/**
 	 * Get the descriptive test for PlanarConfiguration required by Arrow.
 	 * @param type
-	 * @return
+	 * @return the descriptive test for PlanarConfiguration
 	 */
 	public static MonashTag getPlanarConfigurationTxt(String type) {
 		try {
@@ -470,7 +470,7 @@ public class MetadataManager
 	/**
 	 * Get the descriptive test for ResolutionUnit required by Arrow.
 	 * @param type
-	 * @return
+	 * @return the descriptive test for ResolutionUnit 
 	 */
 	public static MonashTag getResolutionUnitTxt(String type) {
 		try {
@@ -490,7 +490,7 @@ public class MetadataManager
 	/**
 	 * Get the descriptive test for SensingMethod required by Arrow.
 	 * @param type
-	 * @return
+	 * @return the descriptive test for SensingMethod
 	 */
 	public static MonashTag getSensingMethodTxt(String type) {
 		try {
@@ -516,7 +516,7 @@ public class MetadataManager
 	/**
 	 * Get the descriptive test for SceneCaptureType required by Arrow.
 	 * @param type
-	 * @return
+	 * @return the descriptive test for SceneCaptureType
 	 */
 	public static MonashTag getSceneCaptureTypeTxt(String type) {
 		try {
@@ -538,7 +538,7 @@ public class MetadataManager
 	/**
 	 * Get the descriptive test for GainControl required by Arrow.
 	 * @param type
-	 * @return
+	 * @return the descriptive test for GainControl
 	 */
 	public static MonashTag getGainControlTxt(String type) {
 		try {
@@ -560,7 +560,7 @@ public class MetadataManager
 	/**
 	 * Get the descriptive test for Saturation required by Arrow.
 	 * @param type
-	 * @return
+	 * @return the descriptive test for Saturation
 	 */
 	public static MonashTag getSaturationTxt(String type) {
 		try {
@@ -581,7 +581,7 @@ public class MetadataManager
 	/**
 	 * Get the descriptive test for Sharpness required by Arrow.
 	 * @param type
-	 * @return
+	 * @return the descriptive test for Sharpness
 	 */
 	public static MonashTag getSharpnessTxt(String type) {
 		try {
@@ -602,7 +602,7 @@ public class MetadataManager
 	/**
 	 * Get the descriptive test for SubjectDistanceRange required by Arrow.
 	 * @param type
-	 * @return
+	 * @return the descriptive test for SubjectDistanceRange
 	 */
 	public static MonashTag getSubjectDistanceRangeTxt(String type) {
 		try {

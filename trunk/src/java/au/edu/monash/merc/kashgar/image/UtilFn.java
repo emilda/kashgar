@@ -225,7 +225,7 @@ public class UtilFn
 	/**
 	 * Returns the file size in MB, KB or B rounded to two decimal places.
 	 * @param path	path to the file
-	 * @return
+	 * @return the file size
 	 */
 	public static String getFilesize(String path) {
 		File file = new File(path);
@@ -251,7 +251,7 @@ public class UtilFn
 	 * Rounds the Rval to the number of places in Rpl
 	 * @param Rval value to round
 	 * @param Rpl  number of places to round to
-	 * @return
+	 * @return rounds the given value to the decimal places requested.
 	 */
 	public static String round(float Rval, int Rpl) {
 		NumberFormat fmt = NumberFormat.getInstance();

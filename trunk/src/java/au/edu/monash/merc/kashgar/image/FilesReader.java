@@ -77,7 +77,7 @@ public class FilesReader
 	 * Load the file details from the input folder and sub directories underneath 
 	 * into the various data structures.
 	 * @param curFolder
-	 * @return
+	 * @return List of errors (if any)
 	 */
 	public static List<ReportLog> loadFiles(File curFolder)
 	{
@@ -99,7 +99,7 @@ public class FilesReader
 	 * File name filter and photo filter are defined to find the supported files.
 	 * ReportLog is populated with unsupported files (if any).
 	 * @param curFolder
-	 * @return
+	 * @return files required for processing.
 	 */
 	public static Folder findFiles(File curFolder)
 	{
